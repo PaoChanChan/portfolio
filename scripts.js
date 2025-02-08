@@ -51,5 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollingContent = document.querySelector('.scrolling-content');
     const clone = scrollingContent.cloneNode(true);
     scrollingContent.parentNode.appendChild(clone);
+    
+    
 
 });

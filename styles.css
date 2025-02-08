@@ -189,7 +189,7 @@ h6,
     width: 24px;
     height: 24px;
     margin: 0 20px;
-    fill: pink;
+    fill: rgb(224, 172, 213);
   }
 
   @keyframes scroll-left {
@@ -370,13 +370,137 @@ h6,
     height: 100%; /* Ajusta el tamaño de los iconos */
 }
 
+/* TECH CARTS Y SCROLLS */
+
+/* Demo Container */
+.tech-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+/* Scroll Boxes */
+.scroll-box {
+	background: white;
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+}
+
+.scroll-header {
+	padding: 1.5rem;
+	border-bottom: 1px solid #e2e8f0;
+	background: white;
+	border-radius: 1rem 1rem 0 0;
+	position: sticky;
+	top: 0;
+}
+
+.scroll-header h2 {
+	color: #1f2937;
+	font-size: 1.25rem;
+	margin-bottom: 0.5rem;
+}
+
+.badge {
+	display: inline-block;
+	padding: 0.25rem 0.75rem;
+	background: #f1f5f9;
+	color: #64748b;
+	border-radius: 9999px;
+	font-size: 0.875rem;
+}
+
+.scroll-content {
+	padding: 1.5rem;
+	overflow-y: auto;
+	flex: 1;
+    background-color: black;
+}
+
+/* Important: This is where we apply the overscroll behavior */
+.contained .scroll-content {
+	overscroll-behavior: contain;
+}
+
+/* Cards */
+.card {
+	background: black;
+    background-color: black !important;
+	padding: 1.5rem;
+	border-radius: 0.75rem;
+	margin-bottom: 1.5rem;
+}
+
+.card h3 {
+	background-color: black;
+    color: rgb(224, 172, 213);
+	font-size: 2rem;
+	margin-bottom: 0.75rem;
+}
+
+.card p {
+	color: white;
+	line-height: 1.5;
+    font-size: 1.5rem;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+	text-align: center;
+	padding: 1rem;
+	color: #94a3b8;
+	font-size: 0.875rem;
+}
+
+/* Visual Enhancements */
+.contained {
+	border: 5px solid #A3C1AD;
+}
+
+.contained .scroll-header {
+	background: black;
+}
+
+.contained .scroll-header h2 {
+	color: white;
+}
+
+.contained .badge {
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+
+/* Scrollbar Styling */
+.scroll-content::-webkit-scrollbar {
+	width: 15px;
+}
+
+.scroll-content::-webkit-scrollbar-track {
+	background: black;
+	border-radius: 4px;
+}
+
+.scroll-content::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.contained .scroll-content::-webkit-scrollbar-thumb {
+	background: pink;
+}
+
 .experiencia {
     background-color: #A3C1AD;
 }
 
 .experiencia h2 {
     position: relative;
-    font-size: 20rem;
+    font-size: 4rem;
     font-weight: bold;
     color: black;
 }
@@ -405,6 +529,8 @@ h6,
 .custom-shape-divider-bottom-1737915975 .shape-fill {
     fill: #A3C1AD;
 }
+
+
 
 @media (min-width: 992px) {
 
