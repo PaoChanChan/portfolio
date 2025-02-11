@@ -333,10 +333,15 @@ h6,
 }
 
 .about-me h2 {
+    transition: transform 0.3s ease;
     position: relative;
     z-index: 2;
     font-size: 3rem;
     color: white;
+}
+
+.about-me h2:hover {
+    transform: scale(1.2);
 }
 
 .scroll-down {
@@ -456,6 +461,21 @@ h6,
     color: white;
 }
 
+.aprender {
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+}
+
+.texto-aprendizaje {
+    max-width: 500px;
+}
+
+.texto-aprendizaje p {
+    font-size: 1.5rem;
+    color: white;
+}
+
+
 
 
 
@@ -549,6 +569,7 @@ h6,
 /* Visual Enhancements */
 .contained {
 	border: 5px solid #A3C1AD;
+    max-width: 400px;
 }
 
 .contained .scroll-header {
@@ -622,6 +643,10 @@ h6,
 
 
 @media (min-width: 992px) {
+
+    .texto-aprendizaje p {
+        font-size: 3rem;
+    }
 
     .svg-image {
         max-width: 500px;
