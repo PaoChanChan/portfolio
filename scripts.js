@@ -51,6 +51,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollingContent = document.querySelector('.scrolling-content');
     const clone = scrollingContent.cloneNode(true);
     scrollingContent.parentNode.appendChild(clone);
+
+    // TOP NAV
+
+    const topNav = document.querySelector('.top-nav');
+
+    // Mostrar el nav al cargar la página
+    setTimeout(() => {
+        topNav.classList.add('hidden');
+    }, 3000); // Ocultar después de 3 segundos
+
+    // Mostrar el nav al hacer scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            topNav.classList.add('hidden');
+        } else {
+            topNav.classList.remove('hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Mostrar el nav al pasar el ratón por la parte superior
+    topNav.addEventListener('mouseenter', function() {
+        topNav.classList.remove('hidden');
+    });
+
+    topNav.addEventListener('mouseleave', function() {
+        if (window.pageYOffset > 0) {
+            topNav.classList.add('hidden');
+        }
+    });
+
+    // Desplazamiento suave al hacer clic en los enlaces del nav
+    document.querySelectorAll('.top-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            window.scrollTo({
+                top: targetElement.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
     
     
 

@@ -122,6 +122,46 @@ h6,
     font-size: 1.7143rem;
 }
 
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+.top-nav.hidden {
+    top: -60px; /* Ajusta este valor según la altura de tu nav */
+}
+
+.top-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top-nav nav ul li {
+    margin: 0 15px;
+}
+
+.top-nav nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+.top-nav nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
 
 .introduction {
     background-color: black;
