@@ -639,7 +639,7 @@ h6,
 
 .animate-from-bottom {
     opacity: 0;
-    animation: slideUp 1s forwards;
+    animation: slideUp 5s forwards;
 }
 
 
@@ -708,7 +708,9 @@ h6,
     width: 100%;
     height: auto;
     border-radius: 30px 10px;
+    filter: grayscale(30%);
 }
+
 
 .divider {
     display: flex;
@@ -740,14 +742,19 @@ h6,
 
 .prev, .next {
     position: absolute;
+    max-width: 120px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: rgb(224, 172, 213);
+    fill: rgb(224, 172, 213) !important;
+    filter: invert(1);
     border: none;
     padding: 20px;
     cursor: pointer;
     border-radius: 50%;
+}
+
+.prev:hover, .next:hover {
+    
 }
 
 .prev {
@@ -756,6 +763,8 @@ h6,
 
 .next {
     right: 10px;
+    transform-origin: center;
+    /* transform: rotate(100deg); */
 }
 
 .caption {
