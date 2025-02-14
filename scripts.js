@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // SVG Animation
     const svgs = document.querySelectorAll('.svg-image');
     let currentIndex = 0;
 
@@ -8,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
         svgs[currentIndex].classList.add('active');
     }
 
-    setInterval(showNextSVG, 2000); // Cambia cada 1 segundo
+    setInterval(showNextSVG, 2000); // Cambia cada 2 segundos
 
     // Inicializa el primer SVG como activo
     svgs[currentIndex].classList.add('active');
 
+    // Description Toggle
     const svgContainer = document.querySelector('.svg-container');
     const description = document.getElementById('description');
     const closeButton = document.getElementById('close-description');
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300); // Duración de la animación
     });
 
+    // Custom Cursor
     const cursor = document.createElement('div');
     cursor.classList.add('custom-cursor');
     document.body.appendChild(cursor);
@@ -48,12 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
         cursor.classList.remove('active');
     });
 
+    // Scrolling Content Clone
     const scrollingContent = document.querySelector('.scrolling-content');
     const clone = scrollingContent.cloneNode(true);
     scrollingContent.parentNode.appendChild(clone);
 
-    // TOP NAV
-
+    // Top Nav
     const topNav = document.querySelector('.top-nav');
 
     // Mostrar el nav al cargar la página
@@ -96,7 +99,100 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
-    
 
+    // Slider
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndexSlider = 0;
+
+    function showSlide(index) {
+        if (index >= slides.length) {
+            currentIndexSlider = 0;
+        } else if (index < 0) {
+            currentIndexSlider = slides.length - 1;
+        } else {
+            currentIndexSlider = index;
+        }
+        slider.style.transform = `translateX(-${currentIndexSlider * 100}%)`;
+    }
+
+    prevButton.addEventListener('click', function() {
+        showSlide(currentIndexSlider - 1);
+    });
+
+    nextButton.addEventListener('click', function() {
+        showSlide(currentIndexSlider + 1);
+    });
+
+    
+    setInterval(function() {
+         showSlide(currentIndexSlider + 1);
+   }, 5000);
+
+    const bubblesContainer = document.querySelector('.bubbles-container');
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duración aleatoria entre 2 y 5 segundos
+        bubblesContainer.appendChild(bubble);
+
+        // Eliminar la burbuja después de que termine la animación
+        bubble.addEventListener('animationend', () => {
+            bubble.remove();
+        });
+    }
+
+    // Crear burbujas a intervalos regulares
+    setInterval(createBubble, 500); // Crear una burbuja cada 500ms
+
+
+    // ANIMACIÓN DEL TITULAR DE EXPERIENCIA
+
+    const exp = document.querySelector('.animate-on-scroll');
+    const letters = exp.textContent.split('');
+    exp.textContent = '';
+
+    letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${index * 0.1}s`;
+        exp.appendChild(span);
+    });
+
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function onScroll() {
+        if (isElementInViewport(exp)) {
+            exp.querySelectorAll('span').forEach(span => {
+                span.classList.add('visible');
+            });
+
+            // Revertir la animación después de 3 segundos
+            setTimeout(() => {
+                exp.querySelectorAll('span').forEach(span => {
+                    span.classList.add('reverse');
+                });
+            }, 3000);
+        } else {
+            exp.querySelectorAll('span').forEach(span => {
+                span.classList.remove('visible');
+                span.classList.remove('reverse');
+            });
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    onScroll();
 });
