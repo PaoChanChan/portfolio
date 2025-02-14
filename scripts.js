@@ -126,10 +126,29 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentIndexSlider + 1);
     });
 
-    
     setInterval(function() {
-         showSlide(currentIndexSlider + 1);
-   }, 5000);
+        showSlide(currentIndexSlider + 1);
+    }, 5000);
+
+    // Touch events for mobile
+    let startX = 0;
+    let endX = 0;
+
+    slider.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchmove', function(e) {
+        endX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', function() {
+        if (startX > endX + 50) {
+            showSlide(currentIndexSlider + 1);
+        } else if (startX < endX - 50) {
+            showSlide(currentIndexSlider - 1);
+        }
+    });
 
     const bubblesContainer = document.querySelector('.bubbles-container');
 
@@ -149,51 +168,61 @@ document.addEventListener('DOMContentLoaded', function() {
     // Crear burbujas a intervalos regulares
     setInterval(createBubble, 500); // Crear una burbuja cada 500ms
 
+    // Función para animar texto
+    function animateText(element, reverseClass = 'reverse') {
+        const letters = element.textContent.split('');
+        element.textContent = '';
+
+        letters.forEach((letter, index) => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.animationDelay = `${index * 0.1}s`;
+            element.appendChild(span);
+        });
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function onScroll() {
+            if (isElementInViewport(element)) {
+                element.querySelectorAll('span').forEach(span => {
+                    span.classList.add('visible');
+                });
+
+                // Revertir la animación después de 3 segundos
+                setTimeout(() => {
+                    element.querySelectorAll('span').forEach(span => {
+                        span.classList.add(reverseClass);
+                    });
+                }, 3000);
+            } else {
+                element.querySelectorAll('span').forEach(span => {
+                    span.classList.remove('visible');
+                    span.classList.remove(reverseClass);
+                });
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+    }
 
     // ANIMACIÓN DEL TITULAR DE EXPERIENCIA
+    const exp = document.querySelector('#exp h2');
+    animateText(exp);
 
-    const exp = document.querySelector('.animate-on-scroll');
-    const letters = exp.textContent.split('');
-    exp.textContent = '';
+    // ANIMACIÓN DEL TITULAR DE PROYECTOS
+    const proyectos = document.querySelector('#pro h2');
+    animateText(proyectos, 'reverse-black');
 
-    letters.forEach((letter, index) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${index * 0.1}s`;
-        exp.appendChild(span);
-    });
-
-    function isElementInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    function onScroll() {
-        if (isElementInViewport(exp)) {
-            exp.querySelectorAll('span').forEach(span => {
-                span.classList.add('visible');
-            });
-
-            // Revertir la animación después de 3 segundos
-            setTimeout(() => {
-                exp.querySelectorAll('span').forEach(span => {
-                    span.classList.add('reverse');
-                });
-            }, 3000);
-        } else {
-            exp.querySelectorAll('span').forEach(span => {
-                span.classList.remove('visible');
-                span.classList.remove('reverse');
-            });
-        }
-    }
-
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-    
+    // ANIMACIÓN DEL TITULAR DE TECNOLOGÍAS
+    const tecnologias = document.querySelector('#tech h2');
+    animateText(tecnologias);
 });
