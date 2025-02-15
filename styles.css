@@ -218,7 +218,7 @@ h6,
     display: flex;
     align-items: center;
     gap: 5rem;
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 15s linear infinite;
 }
 
 .scrolling-content span {
@@ -236,15 +236,13 @@ h6,
     fill: rgb(224, 172, 213);
 }
 
+
 @keyframes scroll-left {
-    0% {
-        transform: translateX(100%);
+    from {
+        transform: translateX(0);
     }
-    10% {
-        transform: translateX(90%);
-    }
-    100% {
-        transform: translateX(-100%);
+    to {
+        transform: translateX(-50%);
     }
 }
 
