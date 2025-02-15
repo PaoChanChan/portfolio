@@ -1,12 +1,19 @@
+ScrollReveal().reveal('.showup', {
+    delay: 375,
+    duration: 600,
+    reset: false,
+    interval: 150,
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // SVG Animation
     const svgs = document.querySelectorAll('.svg-image');
     let currentIndex = 0;
 
     function showNextSVG() {
-        svgs[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % svgs.length;
+        svgs.forEach(svg => svg.classList.remove('active'));
         svgs[currentIndex].classList.add('active');
+        currentIndex = (currentIndex + 1) % svgs.length;
     }
 
     setInterval(showNextSVG, 2000); // Cambia cada 2 segundos
