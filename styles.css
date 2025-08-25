@@ -143,7 +143,6 @@ h6,
 
 .top-nav.hidden {
     top: -60px;
-    /* Ajusta este valor según la altura de tu nav */
 }
 
 .top-nav nav ul {
@@ -151,7 +150,8 @@ h6,
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    font-family: 'Migra', sans-serif !important;
 }
 
 .top-nav nav ul li {
@@ -161,13 +161,16 @@ h6,
 .top-nav nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 25px;
     padding: 5px 10px;
     transition: background-color 0.3s;
 }
 
 .top-nav nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #A3C1AD;
+    border-color:rgb(224, 172, 213);
+    color: black;
+    opacity: 80%;
     border-radius: 5px;
 }
 
@@ -915,7 +918,7 @@ h6,
     position: relative;
     z-index: 1;
     font-size: 4.5rem;
-    color: black;
+    color: white;
 }
 
 .vibrate {
